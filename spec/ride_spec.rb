@@ -29,7 +29,7 @@ RSpec.describe Ride do
 
   it 'can board riders and record how many times they rode' do
     expect(@ride1.rider_log).to eq({})
-    
+
     @visitor1.add_preference(:gentle)
     @visitor2.add_preference(:gentle)
 
