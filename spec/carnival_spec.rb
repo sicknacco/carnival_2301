@@ -8,8 +8,10 @@ RSpec.describe Carnival do
     @carnival = Carnival.new("The Big Carnival", "3 weeks")
   end
 
-  it 'exists' do
+  it 'exists and has a name and duration' do
     expect(@carnival).to be_a(Carnival)
+    expect(@carnival.name).to eq("The Big Carnival")
+    expect(@carnival.duration).to eq("3 weeks")
   end
 
 end
