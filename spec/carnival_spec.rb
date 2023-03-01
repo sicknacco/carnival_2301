@@ -14,6 +14,10 @@ RSpec.describe Carnival do
     expect(@carnival.duration).to eq("3 weeks")
   end
 
+  it 'starts with no rides' do
+    expect(@carnival.rides).to eq([])
+  end
+
 end
 #### 1) Each carnival has a duration, as well as a way to read that data
 #### 2) Each carnival has rides and can list those rides.
