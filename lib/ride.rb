@@ -3,27 +3,35 @@ class Ride
               :min_height,
               :admission_fee,
               :excitement,
-              :total_revenue,
-              :rider_log
+              :rider_log,
+              :total_revenue
 
-  def initialize(hash)
-    @name = hash[:name]
-    @min_height = hash[:min_height]
-    @admission_fee = hash[:admission_fee]
-    @excitement = hash[:excitement]
+  def initialize(ride_data)
+    @name = ride_data[:name]
+    @min_height = ride_data[:min_height]
+    @admission_fee = ride_data[:admission_fee]
+    @excitement = ride_data[:excitement]
+    @rider_log = Hash.new(0)
     @total_revenue = 0
-    @rider_log = {}
   end
-# I tried everything I could think of. A lot more than what is shown.
-# Went really well until here. 1.5 hours+ spent on this
-# Tried using ride in various ways as well. 
-  def board_rider(rider)
-    @rider_log = {:rider => 0}
-    if rider.tall_enough?(@min_height) && rider.preferences.include?(@excitement)
-      rider_log[:rider] =+ 1
-      # @rider_log = rider_log[:rider] += 1
-      # @rider_log "#{rider}" += 1
+
+  def board_rider(visitor)
+    if visitor.tall_enough?(@min_height) && visitor.preferences.include?(@excitement)
+    visitor.spending_money -= @admission_fee
+      @rider_log[visitor] += 1
+      @total_revenue += @admission_fee
     end
-    # @rider_log
   end
 end
+##make sure
+  #visitor has excitement preference
+  #they are tall_enough?(@min_height)
+## log the visitor by adding to the rider log
+## tally count of how many times a visitor has boarded THIS ride
+## add visitor to rider_log as a key
+  ## if rider_log[visitor] exists
+    ## increment += 1
+    ## else
+    ## rider_log[visitor] = 1 ## This is for when they ride the first time!
+## increase the value of total_revenue using @admission fee
+## decrement the visitor's spending money
